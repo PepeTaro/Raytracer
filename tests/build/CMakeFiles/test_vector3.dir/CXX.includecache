@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/vector3.h
+cmath
+-
+cassert
+-
+
+/home/superhuman/programming/git/Raytracer/src/vector3.cpp
+vector3.h
+/home/superhuman/programming/git/Raytracer/src/vector3.h
+
+/home/superhuman/programming/git/Raytracer/tests/test_vector3.cpp
+vector3.h
+/home/superhuman/programming/git/Raytracer/tests/vector3.h
+iostream
+-
+

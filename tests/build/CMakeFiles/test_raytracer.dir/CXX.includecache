@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/camera.h
+vector3.h
+../../include/vector3.h
+
+../../include/raytracer.h
+camera.h
+../../include/camera.h
+vector3.h
+../../include/vector3.h
+
+../../include/vector3.h
+cmath
+-
+cassert
+-
+
+/home/superhuman/programming/git/Raytracer/src/camera.cpp
+camera.h
+/home/superhuman/programming/git/Raytracer/src/camera.h
+
+/home/superhuman/programming/git/Raytracer/src/raytracer.cpp
+raytracer.h
+/home/superhuman/programming/git/Raytracer/src/raytracer.h
+
+/home/superhuman/programming/git/Raytracer/src/vector3.cpp
+vector3.h
+/home/superhuman/programming/git/Raytracer/src/vector3.h
+
+/home/superhuman/programming/git/Raytracer/tests/test_raytracer.cpp
+raytracer.h
+/home/superhuman/programming/git/Raytracer/tests/raytracer.h
+camera.h
+/home/superhuman/programming/git/Raytracer/tests/camera.h
+iostream
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/test_camera.dir/test_camera.cpp.o CMakeFiles/test_camera.dir/home/superhuman/programming/git/Raytracer/src/vector3.cpp.o CMakeFiles/test_camera.dir/home/superhuman/programming/git/Raytracer/src/camera.cpp.o  -o test_camera 

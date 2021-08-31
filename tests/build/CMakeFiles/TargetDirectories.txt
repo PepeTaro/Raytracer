@@ -1,0 +1,6 @@
+/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/rebuild_cache.dir
+/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/edit_cache.dir
+/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/test_raytracer.dir
+/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/test_camera.dir
+/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir
+/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/test_vector3.dir
