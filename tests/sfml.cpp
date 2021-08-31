@@ -20,7 +20,7 @@ int row_block = 24;
 int col_block = 32;
 */
 
-const float kEpsilon = 1.0;
+const float kEpsilon = 1e-8;
 const float kInfinity = 1e20;
 int block_size = 1;
 int row_block = 480;
@@ -31,8 +31,9 @@ int width  = block_size*col_block;
 
 std::vector<Surface*> surfaces;
 static Color ambinet_intensity(1.0,1.0,1.0);
-static Color light_intensity(0.6,0.5,0.4);
-static Vector3 light_pos(-100,10,-10);
+static Color light_intensity(1.0,1.0,1.0);
+//static Vector3 light_pos(-20,10,10);
+static Vector3 light_pos(-100,20,-10);
 
 void DrawPixel(sf::RenderWindow& window,int i,int j,float r,float g,float b){  
     float w,h;
@@ -79,6 +80,7 @@ void RayTrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& 
   records rec,srec;
   Color color;
   float t0,t1;
+  bool is_shadow_hit;
   t0 = 0;
   t1 = kInfinity;
   
@@ -89,22 +91,30 @@ void RayTrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& 
     for(int j=0;j<row_block;++j){
       dir = raytracer.getDirection(i,j);
       
-      //std::cout << dir.x << "," << dir.y << "," << dir.z << std::endl,exit(-1);
-      
       for(auto surface : surfaces){
 	if(surface->isHit(dir,eye,t0,t1,rec)){
 	  color = HadamardProduct(rec.ambient,ambinet_intensity);
 	  light_direction = (light_pos - rec.pos).getNormalize();
-	  
-	  if(not surface->isHit(light_direction,rec.pos,kEpsilon,kInfinity,srec)){
+
+	  is_shadow_hit = false;
+	  for(auto shadow_surface : surfaces){
+	    if(shadow_surface->isHit(light_direction,rec.pos,kEpsilon,kInfinity,srec)){
+	      is_shadow_hit = true;
+	      break;
+	    }	    
+	  }
+
+	  if(not is_shadow_hit){
 	    view_direction = (-1.0*dir).getNormalize();
 	    half_vector = (light_direction + view_direction).getNormalize();
 	    
 	    color = color +
 	      HadamardProduct(rec.diffuse,light_intensity)*max(0,dot(rec.normal,light_direction)) +
-	      HadamardProduct(rec.specular,light_intensity)*powf(max(0,dot(rec.normal,half_vector)),rec.phong_exponent);	  
+	      HadamardProduct(rec.specular,light_intensity)*powf(max(0,dot(rec.normal,half_vector)),rec.phong_exponent);
+
+	    //color = Color(0,0,0);
 	  }
-	  
+
 	  DrawPixel(window,i,j,color.red(),color.green(),color.blue());
 	  
 	}
@@ -118,26 +128,31 @@ void RayTrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& 
 
 void InitSurfaces(){
   /*
-  surfaces.push_back(new Triangle(Vector3(0,0,10),
-				  Vector3(-50,50,20),
-				  Vector3(-50,-50,0),
-				  Color(0.3,0.3,0.3),
-				  Color(0.2,0,0),
-				  Color(0.9,0.9,0)));
+  surfaces.push_back(new Triangle(Vector3(0,0,0),
+				  Vector3(-100,100,0),
+				  Vector3(-100,-100,0),
+				  Color(0.7,0.7,0.7),
+				  Color(0.1,0.1,0.1),
+				  Color(0.5,0.5,0.5)));
   */
-  
+    
+  surfaces.push_back(new Sphere(Vector3(-100,-18,8),8,
+				Color(0.0,0.5,0),
+				Color(0.0,0.1,0),
+				Color(0.0,0.3,0)));
+
   surfaces.push_back(new Sphere(Vector3(-100,0,8),8,
-				Color(0.3,0,0),
+				Color(0.2,0,0),
 				Color(0.0,0,0),
-				Color(1.0,0,0)));
+				Color(0.8,0,0)));
   
-  
+  /*
   // light
   surfaces.push_back(new Sphere(light_pos,5,
 				Color(1,1,1),
 				Color(0.0,0,0),
 				Color(0.0,0,0)));
-  
+  */
   //surfaces.push_back(new Sphere(Vector3(-20,100,0),8));
   /*
   surfaces.push_back(new Triangle(Vector3(-20,-50,0),
