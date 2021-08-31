@@ -22,27 +22,20 @@ bool Sphere::isHit(const Vector3& dir,const Vector3& eye,float t0,float t1,recor
     // 1 solution
     float solution = -B/A;
     rec.t = solution;
-    //rec = {solution,solution};
   }else{
     // 2 solutions
     float tmp = sqrtf(has_solution);
-    
-    if(tmp < 0){
-      rec.t = (-B+tmp)/A;
-      //rec = {(-B+tmp)/A,(-B-tmp)/A};
-    }else{
-      rec.t = (-B-tmp)/A;
-      //rec = {(-B-tmp)/A,(-B+tmp)/A};
-    }
-    
+    rec.t = min((-B+tmp)/A,(-B-tmp)/A);    
   }
+
+  if(rec.t < t0 or rec.t > t1) return false;
   
   rec.ambient = ambient_;
   rec.diffuse = diffuse_;
   rec.specular = specular_;
   rec.phong_exponent = 1;
   rec.pos = eye + rec.t*dir;
-  rec.normal = (rec.pos - center_).getNormalize();
+  rec.normal = (rec.pos - center_)*(1.f/radius_);
 
   return true;
 }

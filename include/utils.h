@@ -6,4 +6,9 @@ inline float max(float a,float b){
   else return a;
 }
 
+inline float min(float a,float b){
+  if(a < b) return a;
+  else return b;
+}
+
 #endif// UTILS_H

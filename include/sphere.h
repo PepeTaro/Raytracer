@@ -4,6 +4,7 @@
 #include "surface.h"
 #include "vector3.h"
 #include "color.h"
+#include "utils.h"
 
 class Sphere : public Surface{
 private:

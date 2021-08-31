@@ -43,6 +43,8 @@ bool Triangle::isHit(const Vector3& dir,const Vector3& eye,float t0,float t1,rec
   beta /= det;
   if(beta < 0 or beta > 1 - gamma) return false;
 
+  if(t < t0 or t > t1) return false;
+  
   rec.t = t;
   rec.ambient = ambient_;
   rec.diffuse = diffuse_;

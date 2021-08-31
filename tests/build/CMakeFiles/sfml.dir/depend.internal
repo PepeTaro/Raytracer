@@ -18,6 +18,7 @@ CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/sphere.cpp.o
  ../../include/color.h
  ../../include/sphere.h
  ../../include/surface.h
+ ../../include/utils.h
  ../../include/vector3.h
  /home/superhuman/programming/git/Raytracer/src/sphere.cpp
 CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/triangle.cpp.o

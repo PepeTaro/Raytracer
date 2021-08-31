@@ -27,6 +27,8 @@ vector3.h
 ../../include/vector3.h
 color.h
 ../../include/color.h
+utils.h
+../../include/utils.h
 
 ../../include/surface.h
 vector3.h
