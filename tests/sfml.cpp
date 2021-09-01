@@ -13,17 +13,10 @@
 #include "triangle.h"
 #include "color.h"
 #include "light.h"
-#include "utils.h"
-
-const float kEpsilon = 1e-8;
-const float kInfinity = 1e20;
+#include "const.h"
 
 int window_height = 480;
 int window_width  = 640;
-
-std::vector<Surface*> surfaces;
-std::vector<Light*> lights;
-static Color ambinet_intensity = 1.5*Color(1.0,1.0,1.0);
 
 void DrawPixel(sf::RenderWindow& window,int i,int j,float r,float g,float b){  
     if(r > 1.0) r = 1.0;
@@ -51,68 +44,6 @@ void Clear(sf::RenderWindow& window,float r,float g,float b){
   }
 }
 
-Color AddShadowToColor(const Color& color,const Vector3& dir,const Light* light,const records& rec){
-  bool is_shadow_hit = false;
-  records tmp_rec;
-  Color result_color;
-  Vector3 light_direction = normalize(light->getPos() - rec.pos);
-  
-  for(auto shadow_surface : surfaces){ // 影となるか否かチェック
-    if(shadow_surface->isHit(light_direction,rec.pos,kEpsilon,kInfinity,tmp_rec)){
-      is_shadow_hit = true;
-      break;
-    }	    
-  }
-	  
-  if(not is_shadow_hit){ // 影とならない場合
-    
-    Vector3 view_direction = normalize(-1.0*dir);
-    Vector3 half_vector = normalize(light_direction + view_direction);
-    Vector3 light_intensity = light->getLightIntensity();
-    
-    result_color = color +
-      rec.diffuse*light_intensity*max(0,dot(rec.normal,light_direction)) +
-      rec.specular*light_intensity*powf(max(0,dot(rec.normal,half_vector)),rec.phong_exponent);	    
-	    
-  }else{ // 影となる場合
-    result_color = rec.ambient;
-  }
-
-  return result_color;
-}
-
-Color Raycolor(const Vector3& dir,const Vector3& eye,float t0,float t1,int recursion_depth=0);
-
-Color AddMirrorReflection(const Color& color,const Vector3& dir,const records& rec,int recursion_depth){
-  if(recursion_depth == 0) return color;
-  
-  Color result_color;
-  Vector3 reflection_vector = dir - 2*(dot(dir,rec.normal))*rec.normal;
-  result_color = color + rec.specular*Raycolor(reflection_vector,rec.pos,kEpsilon,kInfinity,recursion_depth-1);
-  
-  return result_color;
-}
-
-Color Raycolor(const Vector3& dir,const Vector3& eye,float t0,float t1,int recursion_depth){
-  records rec;
-  Color color;
-  
-  for(auto surface : surfaces){
-    if(surface->isHit(dir,eye,t0,t1,rec)){
-	  
-      color = rec.ambient*ambinet_intensity; // Ambientを追加
-	  
-      for(auto light : lights){ // Diffuse,Specular,Shadowを追加
-	color = AddShadowToColor(color,dir,light,rec);
-      }
-      
-      color = AddMirrorReflection(color,dir,rec,recursion_depth);
-	  
-    }
-  }
-  return color;
-}
-
 void Raytrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& camera){
   Vector3 dir;
   Vector3 eye = camera.getE();
@@ -124,34 +55,34 @@ void Raytrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& 
   for(int i=0;i<window_width;++i){
     for(int j=0;j<window_height;++j){
       dir = raytracer.getDirection(i,j);
-      color = Raycolor(dir,eye,t0,t1,1);
+      color = raytracer.Raycolor(dir,eye,t0,t1,1);
       DrawPixel(window,i,j,color);      
     }
   }
 
 }
 
-void InitSurfaces(){
+void InitSurfaces(RayTracer& raytracer){
   
- lights.push_back(new Light(Vector3(-70,20,-1),
+ raytracer.addLight(new Light(Vector3(-70,20,-1),
 			    Color(1.0,1.0,1.0))
 		  );
 
- lights.push_back(new Light(Vector3(-70,-20,-20),
+ raytracer.addLight(new Light(Vector3(-70,-20,-20),
 			    Color(2.0,2.0,2.0))
 		  );
 
  
- surfaces.push_back(new Triangle(Vector3(-200,-100,0),
+ raytracer.addSurface(new Triangle(Vector3(-200,-100,0),
 				  Vector3(-200,100,0),
 				  Vector3(-200,0,-100),
 				  Color(0.6,0.0,0.6),
-				  Color(0.1,0.1,0.1),
+				  Color(0.5,0.5,0.5),
 				  Color(0.9,0.9,0.9),
 				  1)
 		     );
 
- surfaces.push_back(new Triangle(Vector3(0,0,8),
+ raytracer.addSurface(new Triangle(Vector3(0,0,8),
 				  Vector3(-500,300,8),
 				  Vector3(-500,-300,8),
 				  Color(0.6,0.6,0.6),
@@ -160,7 +91,7 @@ void InitSurfaces(){
 				  1)
 		     );
   
-  surfaces.push_back(new Sphere(Vector3(-100,-18,0),8,
+ raytracer.addSurface(new Sphere(Vector3(-100,-18,0),8,
 				Color(0.0,0.5,0),
 				Color(0.0,0.1,0),
 				Color(0.3,0.3,0.3),
@@ -168,13 +99,14 @@ void InitSurfaces(){
 		     );
   
   
-  surfaces.push_back(new Sphere(Vector3(-100,0,0),8,
+  raytracer.addSurface(new Sphere(Vector3(-100,0,0),8,
 				Color(0.5,0.0,0.0),
 				Color(0.1,0.1,0.1),
 				Color(0.9,0.9,0.9),
 				100)
 		     );
 
+  raytracer.addAmbient(new Color(1.5,1.5,1.5));
 }
 
 
@@ -205,17 +137,12 @@ int main(int argc,char **argv){
   Vector3 eye(0,0,0);
   
   Camera camera(eye,view,up);
-  Vector3 u = camera.getU();
-  Vector3 v = camera.getV();
-  Vector3 w = camera.getW();
   
   RayTracer raytracer(window_width,window_height,-window_width/2,window_width/2,-window_height/2,window_height/2);
-  raytracer.attachCamera(camera,focal_length);
+  raytracer.attachCamera(camera,focal_length);  
+  InitSurfaces(raytracer);
   
-  InitSurfaces();
-  //Raytrace(window,raytracer,camera);
-  Draw(window,raytracer,camera);
-  
+  Draw(window,raytracer,camera);  
   while(window.isOpen()){
     Keyboard(window);
   }

@@ -7,7 +7,12 @@ CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/came
  /home/superhuman/programming/git/Raytracer/src/camera.cpp
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o
  ../../include/camera.h
+ ../../include/color.h
+ ../../include/const.h
+ ../../include/light.h
  ../../include/raytracer.h
+ ../../include/surface.h
+ ../../include/utils.h
  ../../include/vector3.h
  /home/superhuman/programming/git/Raytracer/src/raytracer.cpp
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/vector3.cpp.o
@@ -15,6 +20,11 @@ CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/vect
  /home/superhuman/programming/git/Raytracer/src/vector3.cpp
 CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o
  ../../include/camera.h
+ ../../include/color.h
+ ../../include/const.h
+ ../../include/light.h
  ../../include/raytracer.h
+ ../../include/surface.h
+ ../../include/utils.h
  ../../include/vector3.h
  /home/superhuman/programming/git/Raytracer/tests/test_raytracer.cpp

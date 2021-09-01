@@ -6,7 +6,12 @@ CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/came
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/camera.cpp.o: /home/superhuman/programming/git/Raytracer/src/camera.cpp
 
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/camera.h
+CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/color.h
+CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/const.h
+CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/light.h
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/raytracer.h
+CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/surface.h
+CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/utils.h
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: ../../include/vector3.h
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o: /home/superhuman/programming/git/Raytracer/src/raytracer.cpp
 
@@ -14,7 +19,12 @@ CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/vect
 CMakeFiles/test_raytracer.dir/home/superhuman/programming/git/Raytracer/src/vector3.cpp.o: /home/superhuman/programming/git/Raytracer/src/vector3.cpp
 
 CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/camera.h
+CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/color.h
+CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/const.h
+CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/light.h
 CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/raytracer.h
+CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/surface.h
+CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/utils.h
 CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../../include/vector3.h
 CMakeFiles/test_raytracer.dir/test_raytracer.cpp.o: ../test_raytracer.cpp
 

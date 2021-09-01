@@ -14,6 +14,10 @@ vector3.h
 vector3.h
 ../../include/vector3.h
 
+../../include/const.h
+limits
+-
+
 ../../include/light.h
 vector3.h
 ../../include/vector3.h
@@ -21,10 +25,22 @@ color.h
 ../../include/color.h
 
 ../../include/raytracer.h
+vector
+-
 camera.h
 ../../include/camera.h
 vector3.h
 ../../include/vector3.h
+light.h
+../../include/light.h
+color.h
+../../include/color.h
+surface.h
+../../include/surface.h
+const.h
+../../include/const.h
+utils.h
+../../include/utils.h
 
 ../../include/sphere.h
 surface.h
@@ -73,8 +89,6 @@ light.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.cpp
 raytracer.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.h
-iostream
--
 
 /home/superhuman/programming/git/Raytracer/src/sphere.cpp
 sphere.h
@@ -117,6 +131,6 @@ color.h
 /home/superhuman/programming/git/Raytracer/tests/color.h
 light.h
 /home/superhuman/programming/git/Raytracer/tests/light.h
-utils.h
-/home/superhuman/programming/git/Raytracer/tests/utils.h
+const.h
+/home/superhuman/programming/git/Raytracer/tests/const.h
 
