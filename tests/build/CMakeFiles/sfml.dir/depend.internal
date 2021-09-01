@@ -9,6 +9,11 @@ CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/color.cpp.o
  ../../include/color.h
  ../../include/vector3.h
  /home/superhuman/programming/git/Raytracer/src/color.cpp
+CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/light.cpp.o
+ ../../include/color.h
+ ../../include/light.h
+ ../../include/vector3.h
+ /home/superhuman/programming/git/Raytracer/src/light.cpp
 CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o
  ../../include/camera.h
  ../../include/raytracer.h
@@ -33,6 +38,7 @@ CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/vector3.cpp.o
 CMakeFiles/sfml.dir/sfml.cpp.o
  ../../include/camera.h
  ../../include/color.h
+ ../../include/light.h
  ../../include/raytracer.h
  ../../include/sphere.h
  ../../include/surface.h

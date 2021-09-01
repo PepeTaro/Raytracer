@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/sphere.cpp.o"
   "CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/triangle.cpp.o"
   "CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/color.cpp.o"
+  "CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/light.cpp.o"
   "sfml.pdb"
   "sfml"
 )

@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/superhuman/programming/git/Raytracer/src/camera.cpp" "/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/camera.cpp.o"
   "/home/superhuman/programming/git/Raytracer/src/color.cpp" "/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/color.cpp.o"
+  "/home/superhuman/programming/git/Raytracer/src/light.cpp" "/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/light.cpp.o"
   "/home/superhuman/programming/git/Raytracer/src/raytracer.cpp" "/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o"
   "/home/superhuman/programming/git/Raytracer/src/sphere.cpp" "/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/sphere.cpp.o"
   "/home/superhuman/programming/git/Raytracer/src/triangle.cpp" "/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/triangle.cpp.o"

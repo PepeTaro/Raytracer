@@ -222,6 +222,33 @@ home/superhuman/programming/git/Raytracer/src/color.cpp.s:
 	$(MAKE) -f CMakeFiles/sfml.dir/build.make CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/color.cpp.s
 .PHONY : home/superhuman/programming/git/Raytracer/src/color.cpp.s
 
+home/superhuman/programming/git/Raytracer/src/light.o: home/superhuman/programming/git/Raytracer/src/light.cpp.o
+
+.PHONY : home/superhuman/programming/git/Raytracer/src/light.o
+
+# target to build an object file
+home/superhuman/programming/git/Raytracer/src/light.cpp.o:
+	$(MAKE) -f CMakeFiles/sfml.dir/build.make CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/light.cpp.o
+.PHONY : home/superhuman/programming/git/Raytracer/src/light.cpp.o
+
+home/superhuman/programming/git/Raytracer/src/light.i: home/superhuman/programming/git/Raytracer/src/light.cpp.i
+
+.PHONY : home/superhuman/programming/git/Raytracer/src/light.i
+
+# target to preprocess a source file
+home/superhuman/programming/git/Raytracer/src/light.cpp.i:
+	$(MAKE) -f CMakeFiles/sfml.dir/build.make CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/light.cpp.i
+.PHONY : home/superhuman/programming/git/Raytracer/src/light.cpp.i
+
+home/superhuman/programming/git/Raytracer/src/light.s: home/superhuman/programming/git/Raytracer/src/light.cpp.s
+
+.PHONY : home/superhuman/programming/git/Raytracer/src/light.s
+
+# target to generate assembly for a file
+home/superhuman/programming/git/Raytracer/src/light.cpp.s:
+	$(MAKE) -f CMakeFiles/sfml.dir/build.make CMakeFiles/sfml.dir/home/superhuman/programming/git/Raytracer/src/light.cpp.s
+.PHONY : home/superhuman/programming/git/Raytracer/src/light.cpp.s
+
 home/superhuman/programming/git/Raytracer/src/raytracer.o: home/superhuman/programming/git/Raytracer/src/raytracer.cpp.o
 
 .PHONY : home/superhuman/programming/git/Raytracer/src/raytracer.o
@@ -468,6 +495,9 @@ help:
 	@echo "... home/superhuman/programming/git/Raytracer/src/color.o"
 	@echo "... home/superhuman/programming/git/Raytracer/src/color.i"
 	@echo "... home/superhuman/programming/git/Raytracer/src/color.s"
+	@echo "... home/superhuman/programming/git/Raytracer/src/light.o"
+	@echo "... home/superhuman/programming/git/Raytracer/src/light.i"
+	@echo "... home/superhuman/programming/git/Raytracer/src/light.s"
 	@echo "... home/superhuman/programming/git/Raytracer/src/raytracer.o"
 	@echo "... home/superhuman/programming/git/Raytracer/src/raytracer.i"
 	@echo "... home/superhuman/programming/git/Raytracer/src/raytracer.s"

@@ -14,6 +14,12 @@ vector3.h
 vector3.h
 ../../include/vector3.h
 
+../../include/light.h
+vector3.h
+../../include/vector3.h
+color.h
+../../include/color.h
+
 ../../include/raytracer.h
 camera.h
 ../../include/camera.h
@@ -60,6 +66,10 @@ camera.h
 color.h
 /home/superhuman/programming/git/Raytracer/src/color.h
 
+/home/superhuman/programming/git/Raytracer/src/light.cpp
+light.h
+/home/superhuman/programming/git/Raytracer/src/light.h
+
 /home/superhuman/programming/git/Raytracer/src/raytracer.cpp
 raytracer.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.h
@@ -105,6 +115,8 @@ triangle.h
 /home/superhuman/programming/git/Raytracer/tests/triangle.h
 color.h
 /home/superhuman/programming/git/Raytracer/tests/color.h
+light.h
+/home/superhuman/programming/git/Raytracer/tests/light.h
 utils.h
 /home/superhuman/programming/git/Raytracer/tests/utils.h
 

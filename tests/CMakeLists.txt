@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(sfml sfml.cpp ../src/raytracer.cpp ../src/vector3.cpp ../src/camera.cpp ../src/sphere.cpp ../src/triangle.cpp ../src/color.cpp)
+add_executable(sfml sfml.cpp ../src/raytracer.cpp ../src/vector3.cpp ../src/camera.cpp ../src/sphere.cpp ../src/triangle.cpp ../src/color.cpp ../src/light.cpp)
 target_include_directories(sfml PRIVATE ../include/)
 target_link_libraries(sfml LINK_PUBLIC sfml-graphics sfml-window sfml-system)
 

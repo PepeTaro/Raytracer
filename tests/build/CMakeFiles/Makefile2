@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/superhuman/programming/git/Raytracer/tests/build
 CMakeFiles/test_raytracer.dir/all:
 	$(MAKE) -f CMakeFiles/test_raytracer.dir/build.make CMakeFiles/test_raytracer.dir/depend
 	$(MAKE) -f CMakeFiles/test_raytracer.dir/build.make CMakeFiles/test_raytracer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=13,14,15,16,17 "Built target test_raytracer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=14,15,16,17,18 "Built target test_raytracer"
 .PHONY : CMakeFiles/test_raytracer.dir/all
 
 # Include target in all.
@@ -103,7 +103,7 @@ clean: CMakeFiles/test_raytracer.dir/clean
 CMakeFiles/test_camera.dir/all:
 	$(MAKE) -f CMakeFiles/test_camera.dir/build.make CMakeFiles/test_camera.dir/depend
 	$(MAKE) -f CMakeFiles/test_camera.dir/build.make CMakeFiles/test_camera.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=9,10,11,12 "Built target test_camera"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=10,11,12,13 "Built target test_camera"
 .PHONY : CMakeFiles/test_camera.dir/all
 
 # Include target in all.
@@ -140,7 +140,7 @@ clean: CMakeFiles/test_camera.dir/clean
 CMakeFiles/sfml.dir/all:
 	$(MAKE) -f CMakeFiles/sfml.dir/build.make CMakeFiles/sfml.dir/depend
 	$(MAKE) -f CMakeFiles/sfml.dir/build.make CMakeFiles/sfml.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target sfml"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target sfml"
 .PHONY : CMakeFiles/sfml.dir/all
 
 # Include target in all.
@@ -150,7 +150,7 @@ all: CMakeFiles/sfml.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sfml.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sfml.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles 0
 .PHONY : CMakeFiles/sfml.dir/rule
@@ -177,7 +177,7 @@ clean: CMakeFiles/sfml.dir/clean
 CMakeFiles/test_vector3.dir/all:
 	$(MAKE) -f CMakeFiles/test_vector3.dir/build.make CMakeFiles/test_vector3.dir/depend
 	$(MAKE) -f CMakeFiles/test_vector3.dir/build.make CMakeFiles/test_vector3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=18,19,20 "Built target test_vector3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/superhuman/programming/git/Raytracer/tests/build/CMakeFiles --progress-num=19,20,21 "Built target test_vector3"
 .PHONY : CMakeFiles/test_vector3.dir/all
 
 # Include target in all.
