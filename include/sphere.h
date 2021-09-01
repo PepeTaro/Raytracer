@@ -11,8 +11,9 @@ private:
   Vector3 center_;
   float radius_;
   Color ambient_,diffuse_,specular_;
+  float phong_exponent_;
 public:
-  Sphere(const Vector3& center,float radius,const Color& ambient,const Color& diffuse,const Color& specular);
+  Sphere(const Vector3& center,float radius,const Color& ambient,const Color& diffuse,const Color& specular,float phong_exponent);
   bool isHit(const Vector3& dir,const Vector3& eye,float t0,float t1,records& rec);
   
 };//class Sphere

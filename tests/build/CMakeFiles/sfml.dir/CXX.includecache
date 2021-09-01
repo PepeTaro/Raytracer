@@ -63,6 +63,8 @@ color.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.cpp
 raytracer.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.h
+iostream
+-
 
 /home/superhuman/programming/git/Raytracer/src/sphere.cpp
 sphere.h

@@ -10,8 +10,9 @@ private:
   Vector3 a_,b_,c_;
   Vector3 normal_;
   Color ambient_,diffuse_,specular_;
+  float phong_exponent_;
 public:
-  Triangle(const Vector3& a,const Vector3& b,const Vector3& c,const Color& ambient,const Color& diffuse,const Color& specular);
+  Triangle(const Vector3& a,const Vector3& b,const Vector3& c,const Color& ambient,const Color& diffuse,const Color& specular,float phong_exponent);
   bool isHit(const Vector3& dir,const Vector3& eye,float t0,float t1,records& rec);
 
 };//class Triangle

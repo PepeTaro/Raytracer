@@ -2,8 +2,8 @@
 
 Camera::Camera(const Vector3& eye,const Vector3& view,const Vector3& up){
   e_ = eye;
-  w_ = -1.0*view.getNormalize();
-  u_ = cross(up,w_).getNormalize();
+  w_ = normalize(-1.0*view);
+  u_ = normalize(cross(up,w_));
   v_ = cross(w_,u_);
 }
 

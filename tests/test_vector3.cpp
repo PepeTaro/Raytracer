@@ -33,7 +33,6 @@ void test2(){
   Vector3 a(1,0,0);
   Vector3 b(0,1,0);
 
-  u.normalize();
   PrintVector(u);
   std::cout << dot(u,v) << std::endl;
   PrintVector(cross(a,b));

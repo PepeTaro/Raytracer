@@ -1,10 +1,10 @@
 #include "triangle.h"
 
-Triangle::Triangle(const Vector3& a,const Vector3& b,const Vector3& c,const Color& ambient,const Color& diffuse,const Color& specular):
+Triangle::Triangle(const Vector3& a,const Vector3& b,const Vector3& c,const Color& ambient,const Color& diffuse,const Color& specular,float phong_exponent):
   a_(a),b_(b),c_(c),
-  ambient_(ambient),diffuse_(diffuse),specular_(specular)
+  ambient_(ambient),diffuse_(diffuse),specular_(specular),phong_exponent_(phong_exponent)
 {
-  normal_ = cross(b_ - a_,c_ - a_).getNormalize();
+  normal_ = normalize(cross(b_ - a_,c_ - a_));
 }
 
 bool Triangle::isHit(const Vector3& dir,const Vector3& eye,float t0,float t1,records& rec){

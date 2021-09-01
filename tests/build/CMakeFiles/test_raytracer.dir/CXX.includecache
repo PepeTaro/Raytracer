@@ -29,6 +29,8 @@ camera.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.cpp
 raytracer.h
 /home/superhuman/programming/git/Raytracer/src/raytracer.h
+iostream
+-
 
 /home/superhuman/programming/git/Raytracer/src/vector3.cpp
 vector3.h

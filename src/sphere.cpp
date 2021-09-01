@@ -1,8 +1,8 @@
 #include "sphere.h"
 
-Sphere::Sphere(const Vector3& center,float radius,const Color& ambient,const Color& diffuse,const Color& specular):
+Sphere::Sphere(const Vector3& center,float radius,const Color& ambient,const Color& diffuse,const Color& specular,float phong_exponent):
   center_(center),radius_(radius),
-  ambient_(ambient),diffuse_(diffuse),specular_(specular)
+  ambient_(ambient),diffuse_(diffuse),specular_(specular),phong_exponent_(phong_exponent)
 {
 
 }
@@ -33,7 +33,7 @@ bool Sphere::isHit(const Vector3& dir,const Vector3& eye,float t0,float t1,recor
   rec.ambient = ambient_;
   rec.diffuse = diffuse_;
   rec.specular = specular_;
-  rec.phong_exponent = 1;
+  rec.phong_exponent = phong_exponent_;
   rec.pos = eye + rec.t*dir;
   rec.normal = (rec.pos - center_)*(1.f/radius_);
 

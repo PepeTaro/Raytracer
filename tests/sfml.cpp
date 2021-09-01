@@ -14,35 +14,24 @@
 #include "color.h"
 #include "utils.h"
 
-/*
-int block_size = 20;
-int row_block = 24;
-int col_block = 32;
-*/
-
 const float kEpsilon = 1e-8;
 const float kInfinity = 1e20;
-int block_size = 1;
-int row_block = 480;
-int col_block = 640;
 
-int height = block_size*row_block;
-int width  = block_size*col_block;
+int window_height = 480;
+int window_width  = 640;
 
 std::vector<Surface*> surfaces;
-static Color ambinet_intensity(1.0,1.0,1.0);
+static Color ambinet_intensity(2.0,2.0,2.0);
 static Color light_intensity(1.0,1.0,1.0);
-//static Vector3 light_pos(-20,10,10);
-static Vector3 light_pos(-100,20,-10);
+static Vector3 light_pos(-70,20,-10);
 
 void DrawPixel(sf::RenderWindow& window,int i,int j,float r,float g,float b){  
-    float w,h;
-
-    w = block_size*i;
-    h = block_size*j;
+    if(r > 1.0) r = 1.0;
+    if(g > 1.0) g = 1.0;
+    if(b > 1.0) b = 1.0;
     
-    sf::RectangleShape rectangle(sf::Vector2f(block_size,block_size));
-    rectangle.setPosition(sf::Vector2f(w,h));
+    sf::RectangleShape rectangle(sf::Vector2f(1,1)); // Pixel単位で描写
+    rectangle.setPosition(sf::Vector2f(i,j));
     rectangle.setFillColor(sf::Color((int)255*r,
 				     (int)255*g,
 				     (int)255*b));
@@ -50,9 +39,13 @@ void DrawPixel(sf::RenderWindow& window,int i,int j,float r,float g,float b){
     window.draw(rectangle);
 }
 
+void DrawPixel(sf::RenderWindow& window,int i,int j,const Color& color){
+  DrawPixel(window,i,j,color.red(),color.green(),color.blue());
+}
+
 void Clear(sf::RenderWindow& window,float r,float g,float b){
-  for(int x=0;x<col_block;++x){
-    for(int y=0;y<row_block;++y){            
+  for(int x=0;x<window_width;++x){
+    for(int y=0;y<window_height;++y){            
       DrawPixel(window,x,y,r,g,b);
     }
   }
@@ -74,52 +67,62 @@ void Keyboard(sf::RenderWindow& window){
   }
 }
 
-void RayTrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& camera){
+Color AddShadowToColor(const Color& color,const Vector3& dir,const Vector3& light_direction,const records& rec){
+  bool is_shadow_hit = false;
+  records tmp_rec;
+  Color result_color;
+  
+  for(auto shadow_surface : surfaces){ // 影となるか否かチェック
+    if(shadow_surface->isHit(light_direction,rec.pos,kEpsilon,kInfinity,tmp_rec)){
+      is_shadow_hit = true;
+      break;
+    }	    
+  }
+	  
+  if(not is_shadow_hit){ // 影とならない場合
+    
+    Vector3 view_direction = normalize(-1.0*dir);
+    Vector3 half_vector = normalize(light_direction + view_direction);
+    
+    result_color = color +
+      rec.diffuse*light_intensity*max(0,dot(rec.normal,light_direction)) +
+      rec.specular*light_intensity*powf(max(0,dot(rec.normal,half_vector)),rec.phong_exponent);	    
+	    
+  }else{ // 影となる場合
+    result_color = rec.ambient;
+  }
+
+  return result_color;
+}
+
+void Raytrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& camera){
   Vector3 dir;
   Vector3 eye = camera.getE();
-  records rec,srec;
+  records rec;
   Color color;
   float t0,t1;
-  bool is_shadow_hit;
   t0 = 0;
   t1 = kInfinity;
   
-  Vector3 light_direction,view_direction,half_vector;
+  Vector3 light_direction;
   
   Clear(window,0,0,0);      
-  for(int i=0;i<col_block;++i){
-    for(int j=0;j<row_block;++j){
+  for(int i=0;i<window_width;++i){
+    for(int j=0;j<window_height;++j){
       dir = raytracer.getDirection(i,j);
       
       for(auto surface : surfaces){
 	if(surface->isHit(dir,eye,t0,t1,rec)){
-	  color = HadamardProduct(rec.ambient,ambinet_intensity);
-	  light_direction = (light_pos - rec.pos).getNormalize();
-
-	  is_shadow_hit = false;
-	  for(auto shadow_surface : surfaces){
-	    if(shadow_surface->isHit(light_direction,rec.pos,kEpsilon,kInfinity,srec)){
-	      is_shadow_hit = true;
-	      break;
-	    }	    
-	  }
-
-	  if(not is_shadow_hit){
-	    view_direction = (-1.0*dir).getNormalize();
-	    half_vector = (light_direction + view_direction).getNormalize();
-	    
-	    color = color +
-	      HadamardProduct(rec.diffuse,light_intensity)*max(0,dot(rec.normal,light_direction)) +
-	      HadamardProduct(rec.specular,light_intensity)*powf(max(0,dot(rec.normal,half_vector)),rec.phong_exponent);
-
-	    //color = Color(0,0,0);
-	  }
-
-	  DrawPixel(window,i,j,color.red(),color.green(),color.blue());
+	  
+	  color = rec.ambient*ambinet_intensity;
+	  light_direction = normalize(light_pos - rec.pos);
+	  
+	  color = AddShadowToColor(color,dir,light_direction,rec);
+	  
+	  DrawPixel(window,i,j,color);
 	  
 	}
-      }
-      
+      }      
     }
   }
 
@@ -127,24 +130,30 @@ void RayTrace(sf::RenderWindow& window,const RayTracer& raytracer,const Camera& 
 }
 
 void InitSurfaces(){
-  /*
-  surfaces.push_back(new Triangle(Vector3(0,0,0),
-				  Vector3(-100,100,0),
-				  Vector3(-100,-100,0),
-				  Color(0.7,0.7,0.7),
-				  Color(0.1,0.1,0.1),
-				  Color(0.5,0.5,0.5)));
-  */
-    
-  surfaces.push_back(new Sphere(Vector3(-100,-18,8),8,
+  
+  surfaces.push_back(new Triangle(Vector3(0,0,8),
+				  Vector3(-500,300,8),
+				  Vector3(-500,-300,8),
+				  Color(0.6,0.6,0.6),
+				  Color(0.9,0.9,0.9),
+				  Color(0.9,0.9,0.9),
+				  1)
+		     );
+  
+  surfaces.push_back(new Sphere(Vector3(-100,-18,0),8,
 				Color(0.0,0.5,0),
 				Color(0.0,0.1,0),
-				Color(0.0,0.3,0)));
-
-  surfaces.push_back(new Sphere(Vector3(-100,0,8),8,
-				Color(0.2,0,0),
-				Color(0.0,0,0),
-				Color(0.8,0,0)));
+				Color(0.3,0.3,0.3),
+				1)
+		     );
+  
+  
+  surfaces.push_back(new Sphere(Vector3(-100,0,0),8,
+				Color(0.5,0.0,0.0),
+				Color(0.1,0.1,0.1),
+				Color(0.9,0.9,0.9),
+				100)
+		     );
   
   /*
   // light
@@ -165,23 +174,24 @@ void InitSurfaces(){
 }
 
 int main(int argc,char **argv){  
-  sf::RenderWindow window(sf::VideoMode(width,height), "RayTracer");  
-
+  sf::RenderWindow window(sf::VideoMode(window_width,window_height), "RayTracer");
+  
+  float fov = 45.0;  
+  float focal_length = sqrtf(powf(window_width,2) + powf(window_height,2))/(2.f*tanf(fov/2.0));
   Vector3 view(-1,0,0);
   Vector3 up(0,0,1);
   Vector3 eye(0,0,0);
-  float focal_length;
-  float fov = 45.0;
   
   Camera camera(eye,view,up);
-  //RayTracer raytracer(col_block,row_block,-10,10,-10,10);
-  RayTracer raytracer(col_block,row_block,-col_block/2,col_block/2,-row_block/2,row_block/2);
-
-  focal_length = sqrtf(powf(col_block,2) + powf(row_block,2))/(2.f*tanf(fov/2.0));
+  Vector3 u = camera.getU();
+  Vector3 v = camera.getV();
+  Vector3 w = camera.getW();
+  
+  RayTracer raytracer(window_width,window_height,-window_width/2,window_width/2,-window_height/2,window_height/2);
   raytracer.attachCamera(camera,focal_length);
-
+  
   InitSurfaces();
-  RayTrace(window,raytracer,camera);
+  Raytrace(window,raytracer,camera);
   
   while(window.isOpen()){
     Keyboard(window);

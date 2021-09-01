@@ -13,6 +13,8 @@ void RayTracer::attachCamera(const Camera& camera,float focal_length){
   focal_length_ = focal_length;
 }
 
+#include <iostream>
+
 Vector3 RayTracer::getDirection(int i,int j) const{
   // Maybe I should store (right_edge_ - left_edge_)/num_col_pixles as a member variable.
   float u = left_edge_ + (right_edge_ - left_edge_)*(i + 0.5)/num_col_pixels_;
